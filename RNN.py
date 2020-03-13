@@ -1,4 +1,3 @@
-# Make sure that you have all these libaries available to run the code successfully
 from pandas_datareader import data
 import matplotlib.pyplot as plt
 import datetime as dt
@@ -99,18 +98,18 @@ for store_i in select_stores:
           for b in range(self._batch_size):
               #print("batch: ",b)
               if self._cursor[b]+1>=self._prices_length:
-                  #print("Line 88 is good")
+
                   #self._cursor[b] = b * self._segments
                   self._cursor[b] = np.random.randint(0,(b+1)*self._segments)
-                  #print("Line 91 is good")
+
   
               batch_data[b] = self._prices[self._cursor[b]]
-              #print("Line 94 is good")
+
               batch_labels[b]= self._prices[self._cursor[b]+np.random.randint(0,5)]
-              #print("Line 96 is good")
+
   
               self._cursor[b] = (self._cursor[b]+1)%self._prices_length
-              #print("Line 99 is good")
+
   
           return batch_data,batch_labels
   
@@ -202,7 +201,7 @@ for store_i in select_stores:
     h.append(tf.Variable(tf.zeros([batch_size, num_nodes[li]]), trainable=False))
     initial_state.append(tf.contrib.rnn.LSTMStateTuple(c[li], h[li]))
   
-  # Do several tensor transofmations, because the function dynamic_rnn requires the output to be of
+  # Do several tensor transformations, because the function dynamic_rnn requires the output to be of
   # a specific format. Read more at: https://www.tensorflow.org/api_docs/python/tf/nn/dynamic_rnn
   all_inputs = tf.concat([tf.expand_dims(t,0) for t in train_inputs],axis=0)
   
